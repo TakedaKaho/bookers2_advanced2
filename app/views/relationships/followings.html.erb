@@ -1,0 +1,6 @@
+<h2>Follow Users</h2>
+<% if @users.exists? %>
+  <%= render "/users/index", users: @users %><!--@users = user.followings #そのユーザーがフォローしているユーザー（user.followings）を@usersに代入-->
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
