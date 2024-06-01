@@ -35,8 +35,18 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-  
-  
+  def self.search_for(content, method) #selfはクラス自身を指す、今回はUser ruby9章　クラス全体の中から何かを取り出す際に使用する
+    if method == 'perfect'
+      User.where(name: content)
+    elsif method == 'forward'
+      User.where('name LIKE ?', content + '%')
+    elsif method == 'backward'
+      User.where('name LIKE ?', '%' + content)
+    else
+      User.where('name LIKE ?', '%' + content + '%')
+    end
+  end 
+
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
