@@ -9,7 +9,11 @@
   
    <div class='col-md-8 offset-md-1'>
    <h2>Users</h2>
-    <%= render 'index',users: @users %>
+    <%= render 'index',users: @users, book: book%>
+    <!--何故book? 共通テンプレのeach内の変数がbookだから
+    @books`は、indexアクションで定義された`@books = Book.all`によって取得された本のコレクションです。
+    `@books.each`は、このコレクションを一つずつ順番に取り出すためのループです。ループ内では、
+    各本を`book`という変数に代入しています。-->
   </div>
   
  </div>
