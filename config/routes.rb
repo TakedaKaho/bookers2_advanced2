@@ -17,4 +17,6 @@ Rails.application.routes.draw do
           #URLやから自由.  #コントローラー名#アクション名
   	  get "followers" => "relationships#followers", as: "followers"
   end
+  
+  resources :chats, only: [:show, :create, :destroy]
 end 
