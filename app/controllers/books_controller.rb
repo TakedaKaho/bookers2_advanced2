@@ -24,10 +24,19 @@ class BooksController < ApplicationController
     to = Time.current.at_end_of_day
     from = (to - 6.day).at_beginning_of_day
     @book_favorites = Book.includes(:favorites).sort_by { |book| -book.favorites.where(created_at: from...to).count }
-    @books_count = Book.all
-    @books = Book.all
+    #@books_count = Book.all
     @book = Book.new
+    
+  if params[:latest]
+   @books = Book.latest
+  elsif params[:old]
+   @books = Book.old
+  elsif params[:star_count]
+   @books = Book.star_count
+  else
+   @books = Book.all
   end
+  end 
 
   def edit
     book_correct_user
