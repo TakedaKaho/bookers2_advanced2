@@ -1,5 +1,4 @@
 <div id="star_<%= book.id %>"></div>
-
 <script>
 $(document).on('turbolinks:load', function() {
   let elem = document.querySelector('#star_<%= book.id %>');
@@ -11,7 +10,7 @@ $(document).on('turbolinks:load', function() {
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
     score: "<%= book.star %>",
-    readOnly: true,
+    readOnly: <%= book.persisted? ? 'true' : 'false' %>,
   };
   raty(elem, opt);
 });
