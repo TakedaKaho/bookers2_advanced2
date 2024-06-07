@@ -26,16 +26,15 @@ class BooksController < ApplicationController
     @book_favorites = Book.includes(:favorites).sort_by { |book| -book.favorites.where(created_at: from...to).count }
     #@books_count = Book.all
     @book = Book.new
-    
-  if params[:latest]
-   @books = Book.latest
-  elsif params[:old]
-   @books = Book.old
-  elsif params[:star_count]
-   @books = Book.star_count
-  else
-   @books = Book.all
-  end
+    if params[:latest]
+     @books = Book.latest
+    elsif params[:old]
+     @books = Book.old
+    elsif params[:star_count]
+     @books = Book.star_count
+    else
+     @books = Book.all
+    end
   end 
 
   def edit
@@ -62,7 +61,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :category)
   end
   
   def book_correct_user

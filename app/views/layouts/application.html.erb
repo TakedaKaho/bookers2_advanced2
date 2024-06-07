@@ -8,14 +8,20 @@
     <script src="https://kit.fontawesome.com/b9cdc46fdb.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="preload" href="https://d1afd9593bc34f2aa26a4b76f1b3bbb2.vfs.cloud9.ap-northeast-1.amazonaws.com/packs/js/application-3c8c49d18a08d7c0e690.js" as="script">
+   
   </head>
   <body>
     <%= render 'layouts/header' %>
       <main>
         <p id="notice"><%= notice %></p>
         
-        <div class="d-flex justify-content-center mb-2">
+        <div class="d-flex justify-content-center">
+          
+          <% if user_signed_in? %>
           <%= render "searches/search_form" %>
+　　      <%= render 'tagsearches/tagsearch' %>
+          <% end %>
         </div>
         
         <%= yield %>
